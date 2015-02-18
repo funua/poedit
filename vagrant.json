@@ -1,0 +1,29 @@
+{
+    "cookie": {
+        "secret": "a-cookie-secret"
+    },
+    "server": {
+        "domain": "localhost",
+        "port": 9999
+    },
+    "xgettext": {
+        "path": "/home/fun/work/testFolder/i18n",
+        "sources": [
+            "/home/fun/work/callnet-frontend/"
+        ]
+    },
+    "mysql": {
+        "host": "localhost",
+        "user": "root",
+        "password": "198519"
+    },
+    "httpAuth": {
+        "type": "mysql",
+        "mysql": {
+            "table": "users",
+            "username": "name",
+            "password": "password",
+            "encoding": ""
+        }
+    }
+}

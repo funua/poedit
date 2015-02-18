@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Callnet Translator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="description" content="Your app description" />
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+        <link rel="stylesheet" href="/assets/dev/css/app.css" />
+    </head>
+    <body>
+        <h1 style="text-align:center">Callnet Translator</h1>
+
+        <ul class="center">
+        {% for lang in languages %}
+            <li>
+                <a href="/{{ lang }}?all=1">{{ lang }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        {% if not status.clean %}
+            <br />
+            <div class="center">
+                There are uncommited changes
+                <br />
+                <a class="button-success pure-button " href="/commit">Commit now</a>
+            </div>
+        {% endif %}
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script data-main="/assets/dev/js/app.js" src="/assets/dev/js/vendor/require.js"></script>
+    </body>
+</html>

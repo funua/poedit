@@ -1,0 +1,32 @@
+{
+  "name": "node-po-editor",
+  "version": "0.0.27",
+  "description": "A web based node written po file editor with HTML support",
+  "main": "app.js",
+  "dependencies": {
+    "cli": "^0.6.5",
+    "gift": "~0.4.2",
+    "github": "~0.2.1",
+    "neasy": "*",
+    "pofile": "^0.2.12",
+    "q": "^1.1.2"
+  },
+  "bin": {
+    "po-editor": "app.js",
+    "poeditor": "app.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joserobleda/node-po-editor.git"
+  },
+  "author": "Jose Ignacio Andrés",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joserobleda/node-po-editor/issues"
+  },
+  "homepage": "https://github.com/joserobleda/node-po-editor"
+}
