@@ -20,6 +20,24 @@
             <ul>
                 <li><a href="/">Language list</a></li>
                 <li><a href="/{{ trans.language }}/{{ trans.file }}/reload">Re-Parse</a></li>
+                <li>
+                    {% if not all %}
+                        <a href="/{{ trans.language }}/{{ trans.file }}">
+                    {% endif%}
+                        All
+                    {% if not all %}
+                        </a>
+                    {% endif%}
+                </li>
+                <li>
+                    {% if all %}
+                        <a href="/{{ trans.language }}/{{ trans.file }}?need_translate=1">
+                    {% endif%}
+                    Need translate
+                    {% if all %}
+                        </a>
+                    {% endif%}
+                </li>
             </ul>
         </nav>
         {% if trans.strings.length %}
@@ -29,10 +47,17 @@
                         <div href="#{{ string.slug }}" class="pure-g link">
                             <div class="pure-u-11-24">
                                 {{ string.msgid }}
+<!--                                 <div style="color: #aaa;font-size: 11px;">
+                                    {% for ref in string.references %}
+                                        {{ref}} <br>
+                                    {% endfor %}
+                                </div> -->
                             </div>
                             <div class="pure-u-2-24"></div>
                             <div class="pure-u-11-24">
+                            {% if not string.flags.fuzzy %}
                                 {{ string.msgstr.0 }}
+                            {% endif %}
                             </div>
                         </div>
                     </li>

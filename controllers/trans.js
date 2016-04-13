@@ -86,18 +86,29 @@
 					return 'Error: ' + err;
 				}
 
-				if (1 || req.query.all) {
+				if (req.query.need_translate) {
 					filter = null;
-				} else {
 					filter = function (item) {
 						return item.msgstr[0].length === 0;
 					};
-				}
+				} else {
+					filter = null;
+				}				
+
+				var groups = {};
+
+				var trans_arr = trans.toArray({filter:filter});
+
+				for (var i = trans_arr.strings.length - 1; i >= 0; i--) {
+					for (var y = trans_arr.strings[i].references.length - 1; y >= 0; y--) {
+						var ref = trans_arr.strings[i].references[y];
+						trans_arr.strings[i].references[y] = ref.replace(/var\/www\/callnet-dev-web\.synergetica\.net\/\w+./, '');
+					};
+				};
 
 				res.render('trans.twig', {
-					'trans': trans.toArray({
-						filter: filter
-					})
+					'trans': trans_arr,
+					'all': (filter?false:true)
 				});
 			});
 		},
@@ -127,7 +138,10 @@
 				if (!(string = this.findSlug(slug))) {
 					return res.end('Error: string not found');
 				}
-
+				for (var y = string.references.length - 1; y >= 0; y--) {
+					var ref = string.references[y];
+					string.references[y] = ref.replace(/var\/www\/callnet-web\.synergetica\.net\/\w+./, '');
+				};
 				res.render('string.twig', {
 					'string': string
 				});
@@ -159,7 +173,6 @@
 				if (!(string = this.findSlug(slug))) {
 					return res.end('Error: string not found');
 				}
-
 				trans.updateString(string, req.body.msgstr);
 
 				trans.save(function (err) {

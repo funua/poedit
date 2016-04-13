@@ -251,6 +251,9 @@ var Trans = Model.extend({
                 if (err) {
                     return cb.call(self, err);
                 }
+                exec('cd /home/jenkins/callnet-grunt; sudo grunt compile', function (err, stdout, stderr) {
+                    console.log('err');
+                });
 
                 return cb.call(self);
             })
@@ -270,6 +273,7 @@ var Trans = Model.extend({
     },
 
     updateString: function (item, strings) {
+        if (item.flags.fuzzy) item.flags = {};
         item.msgstr = strings;
     },
 

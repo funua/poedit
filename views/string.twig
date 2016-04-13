@@ -10,7 +10,11 @@
                     {{ string.msgid_plural }}
                 </div>
             {% endif %}
-
+            <div style="color: #888;font-size: 12px;">
+                {% for ref in string.references %}
+                    {{ref}} <br>
+                {% endfor %}
+            </div>
             {% if string.extractedComments.length %}
                 <hr />
 
@@ -30,10 +34,21 @@
                 <a data-wysihtml5-action="change_view" class="right">html/text</a>
                 {% endspaceless %}
             </div>
-
+            {% if string.flags.fuzzy %}
+                <div style="color: #888;font-size: 12px;">
+                    fuzzy: 
+                    {% for key, value in string.msgstr %}
+                        {{ value }}
+                    {% endfor %}
+                </div>
+            {% endif %}
             {% for key, value in string.msgstr %}
                 <div class="{% if string.msgstr.length > 1 %}has-plurals{% endif %} block-{{ key }}">
-                    <textarea name="msgstr[]" autofocus>{{ value }}</textarea>
+                    <textarea name="msgstr[]" autofocus>
+                        {% if not string.flags.fuzzy %}
+                            {{ value }}
+                        {% endif%}
+                    </textarea>
                 </div>
             {% endfor %}
         </div>

@@ -9,13 +9,16 @@
     "github": "~0.2.1",
     "neasy": "*",
     "pofile": "^0.2.12",
-    "q": "^1.1.2"
+    "q": "^1.1.2",
+    "node-sass": ""
   },
   "bin": {
     "po-editor": "app.js",
     "poeditor": "app.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-sass": ""
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

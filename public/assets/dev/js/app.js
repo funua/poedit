@@ -52,32 +52,45 @@ define(function () {
         ctx = ctx || document.body;
 
         $(ctx).find('form.save').submit(function (e) {
+
             e.preventDefault();
 
-            var form = $(this);
-            var data = form.serializeArray();
+            var valid = true;
 
-            // clean starting and finish line breaks
-            $.each(data, function (i, input) {
-                input.value = input.value.trimWith('<br>');
-            });
+            $(ctx).find('textarea').each(function () {
+                if (!$(this).val()) valid = false
+            })
 
-            // update row
-            $(App.active).find('div:last').html(data[0].value);
+            if (valid) {
+                
 
-            $.post(this.action, data, function (res) {
-                form.replaceWith(res);
+                var form = $(this);
+                var data = form.serializeArray();
 
-                // re-bind events
-                bindEvents(editor);
+                // clean starting and finish line breaks
+                $.each(data, function (i, input) {
+                    input.value = input.value.trimWith('<br>');
+                });
 
-                setTimeout(function () {
-                    var next = $(App.active).next('li');
-                    if (next.length) {
-                        location.hash = $(App.active).next('li').attr('id');
-                    }
-                }, 300);
-            });
+                // update row
+                $(App.active).find('div:last').html(data[0].value);
+
+                $.post(this.action, data, function (res) {
+                    form.replaceWith(res);
+
+                    // re-bind events
+                    bindEvents(editor);
+
+                    setTimeout(function () {
+                        var next = $(App.active).next('li');
+                        if (next.length) {
+                            location.hash = $(App.active).next('li').attr('id');
+                        }
+                    }, 300);
+                });
+            } else {
+                alert('Please fill all fields!');
+            }         
         });
 
         $(ctx).find('textarea').each(function () {
