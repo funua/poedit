@@ -102,7 +102,7 @@
 				for (var i = trans_arr.strings.length - 1; i >= 0; i--) {
 					for (var y = trans_arr.strings[i].references.length - 1; y >= 0; y--) {
 						var ref = trans_arr.strings[i].references[y];
-						trans_arr.strings[i].references[y] = ref.replace(/var\/www\/callnet-dev-web\.synergetica\.net\/\w+./, '');
+						trans_arr.strings[i].references[y] = ref.replace(/var\/www\/callnet\/callnet-dev-web\.synergetica\.net\/\w+./, '');
 					};
 				};
 
@@ -140,7 +140,7 @@
 				}
 				for (var y = string.references.length - 1; y >= 0; y--) {
 					var ref = string.references[y];
-					string.references[y] = ref.replace(/var\/www\/callnet-web\.synergetica\.net\/\w+./, '');
+					string.references[y] = ref.replace(/var\/www\/callnet\/callnet-web\.synergetica\.net\/\w+./, '');
 				};
 				res.render('string.twig', {
 					'string': string

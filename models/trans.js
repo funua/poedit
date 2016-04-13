@@ -251,7 +251,7 @@ var Trans = Model.extend({
                 if (err) {
                     return cb.call(self, err);
                 }
-                exec('cd /home/jenkins/callnet-grunt; sudo grunt compile', function (err, stdout, stderr) {
+                exec('cd /home/ubuntu/callnet-grunt; sudo grunt compile', function (err, stdout, stderr) {
                     console.log('err');
                 });
 
